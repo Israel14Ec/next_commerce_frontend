@@ -5,6 +5,7 @@ import { Platform } from "@/src/api";
 import styles from "./Menu.module.scss" 
 import Link from "next/link";
 import { PlatformType } from "@/src/types";
+import { serverHost } from "@/src/utils/serverHost";
 const platformController = new Platform();
 
 export function Menu() {
@@ -37,9 +38,9 @@ export function Menu() {
         platforms.length > 0 ? (
           <>
             {platforms.map((platform) => (
-              <Link key={platform.id} href={`/games/${platform.attributes.slug}`}>
+              <Link key={platform.id} href={`/home/games/${platform.attributes.slug}?page=1`}>
                   <img 
-                    src={`http://localhost:1337${platform.attributes.icon.data.attributes.url}`} 
+                    src={`${serverHost}${platform.attributes.icon.data.attributes.url}`} 
                     alt={platform.attributes.title} 
                   />
                   {platform.attributes.title} 

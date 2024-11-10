@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { Container, Image } from "semantic-ui-react"
+import { Container } from "semantic-ui-react"
 import { DateTime } from "luxon"
 import { useState, useEffect } from "react"
 import { Games } from "@/src/api"
@@ -35,7 +35,7 @@ export function BannerLastGamePublisher() {
     
   return (
     <div className={styles.container} >
-        <Image 
+        <img 
           src={`http://localhost:1337${wallpaper.data.attributes.url}`}
           className={styles.wallpaper}
         />

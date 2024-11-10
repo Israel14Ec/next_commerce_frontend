@@ -71,5 +71,26 @@ export type GamesT = {
                 }
             }
         }
+        portada: {
+            data: {
+                attributes: {
+                    url: string
+                }
+            }
+        }
     }
+}
+
+//Paginación
+export type Pagination = {
+    page: number,
+    pageSize: number,
+    pageCount:number,
+    total: number
+}
+
+//games pagination
+export type GamesPagination = {
+    data: [GamesT]
+    meta: {pagination: Pagination}
 }

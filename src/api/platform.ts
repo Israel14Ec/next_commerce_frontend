@@ -1,3 +1,4 @@
+import axios from "axios"
 import api from "../lib/axios"
 import { PlatformType } from "../types"
 
@@ -14,4 +15,18 @@ export class Platform {
             throw error
         }
     }
+
+    async getBySlug(slug:PlatformType['attributes']['slug']) {
+        try {
+            const filters = `filters[slug][$eq]=${slug}`
+            const url = `/platforms?${filters}`
+            const { data: {data} } = await api.get<{data: PlatformType[]}>(url)
+             return data[0]
+
+        } catch (error) {
+            throw error
+        }
+    }
+
+
 }

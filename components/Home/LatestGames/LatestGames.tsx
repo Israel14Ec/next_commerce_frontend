@@ -1,14 +1,21 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import { Container } from "semantic-ui-react"
 import { Games } from "@/src/api"
 import { GamesT } from "@/src/types"
 import { Spinner } from "@/components/Utils/Spinner"
+import { GridGames } from "@/components/Utils/GridGames"
+
+type LatestGamesProps = {
+  title: string
+  limit?: number
+  platformId?: number
+}
 
 const gameController = new Games()
-const LIMIT = 9
 
-export function LatestGames() {
+export function LatestGames({ title, limit=9, platformId} : LatestGamesProps) {
 
   const [games, setGames] = useState<GamesT[]>([])
   const [loading, setLoading] = useState(true)
@@ -16,7 +23,7 @@ export function LatestGames() {
   useEffect(() => {
     (async() => {
       try {
-        const response = await gameController.getLatestPublished(LIMIT)
+        const response = await gameController.getLatestPublished(limit, platformId)
         setGames(response)
       } catch (error) {
         console.error(error);
@@ -36,7 +43,12 @@ export function LatestGames() {
 
   return (
     <div>
-
+      <Container>
+        <h2>{title}</h2>
+        <GridGames 
+          games={games}
+        />
+      </Container>
     </div>
   )
 }

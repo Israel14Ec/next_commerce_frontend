@@ -18,7 +18,7 @@ export function ListAddresses({reload, onReload} : ListAddressesProps) {
   const { user } = useAuth()
   const [address, setAddress] = useState<AddresT[]>({} as AddresT[])
   const [loading, setLoading] = useState(true)
-  const addressDataExist = Object.keys(address).length > 1
+  const addressDataExist = Object.keys(address).length > 0
 
   useEffect( () => {
     //Función anónima autoejecutable
@@ -38,7 +38,7 @@ export function ListAddresses({reload, onReload} : ListAddressesProps) {
   if(loading) return (<Spinner/>)
   
   if(!addressDataExist) return (
-    <p>No se agregaron direcciones tadavía</p>
+    <p>No se agregaron direcciones tadavía</p                                                                   >
   )
 
   return (

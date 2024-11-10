@@ -3,14 +3,14 @@ import styles from "./Discount.module.scss";
 
 type DiscountProps = {
     children: ReactNode
-    className: string
+    className?: string
 }
 
 export function Discount({children, className} : DiscountProps) {
   
   return (
     <span
-      className={ className ? '':''}
+      className={`${styles.labelDiscount} ${className || ""}`}
     >
       {children}
     </span>
