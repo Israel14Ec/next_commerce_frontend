@@ -15,12 +15,12 @@ export function GridGames({ games } : GridGamesProps) {
   return (
     <div className={styles.gridGames} >
         {games.map((game) => (
-            <Link key={game.id} href={`/${game.attributes.slug}`} className={styles.game} >
+            <Link key={game.id} href={`/home/${game.attributes.slug}`} className={styles.game} >
                 <div>
                     <img src={`${serverHost}${game.attributes.portada.data.attributes.url}`} />
                     {game.attributes.discount > 0 && (
                         <Label.Discount className={styles.discount}>
-                            {`-${game.attributes.discount}$`}
+                            {`- ${game.attributes.discount}$`}
                         </Label.Discount>
                     )}
                 </div>

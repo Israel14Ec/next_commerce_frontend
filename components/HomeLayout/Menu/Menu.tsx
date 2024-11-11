@@ -1,18 +1,24 @@
 "use client";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { Icon, Input } from "semantic-ui-react";
 import { Platform } from "@/src/api";
-import styles from "./Menu.module.scss" 
-import Link from "next/link";
 import { PlatformType } from "@/src/types";
 import { serverHost } from "@/src/utils/serverHost";
+import { useAuth } from "@/src/Hooks";
+import Link from "next/link";
+import styles from "./Menu.module.scss" 
+import { Spinner } from "@/components/Utils/Spinner";
+
 const platformController = new Platform();
 
 export function Menu() {
 
   const [platforms, setPlatforms] = useState<PlatformType[]>([])
   const [loadingPlataform, setLoadingPlataform] = useState(true)
-  const [showSearch, setShowSearch] = useState(false)
+  const router = useRouter()
+
+  const { showSearch, setShowSearch}= useAuth()
 
   const openCloseSearch = () => setShowSearch(prevState => !prevState)
 
@@ -30,7 +36,11 @@ export function Menu() {
     })();
   }, []);
 
-  if(loadingPlataform) return <p>Cargando...</p>
+  const onSearch =( text: string) => {
+    router.replace(`/home/search?s=${text}`)
+  }
+
+  if(loadingPlataform) return <Spinner />
   
   return (
     <div className={styles.platform}>
@@ -56,7 +66,13 @@ export function Menu() {
         )
       }
       <div className={`${styles.inputContainer} ${showSearch ? styles.active : ''}`} >
-        <Input id="search-games" placeholder="Buscador" className={styles.input} focus={true}/>
+        <Input 
+          id="search-games" 
+          placeholder="Buscador" 
+          className={styles.input} 
+          focus={true}
+          onChange={(_, data) => onSearch(data.value)}  
+        />
         <Icon name="close" className={styles.closeInput} onClick={openCloseSearch} />
       </div>
     </div>

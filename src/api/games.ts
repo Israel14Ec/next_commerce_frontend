@@ -46,4 +46,19 @@ export class Games {
             throw error
         }
     }
+
+    async searchGames(text:string, page:number = 1) {
+        try {
+            const filter = `filters[title][$contains]=${text}`
+            const pagination = `pagination[page]=${page}&pagination[pageSize]=30`
+            const populate = "populate=*"
+            
+            const url = `/games?${filter}&${pagination}&${populate}`            
+            const { data } = await api.get<GamesPagination>(url)
+            return data
+
+        } catch (error) {
+            throw error
+        }
+    }
 }

@@ -1,7 +1,6 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-import { createContext, ReactNode, useState, useEffect } from "react";
+import { createContext, ReactNode, useState, useEffect, Dispatch, SetStateAction } from "react";
 import { UserLogged } from "../types";
 import { User } from "../api";
 import { Token } from "../utils/token";
@@ -13,9 +12,11 @@ const userController = new User();
 type AuthContextProps = {
   accessToken: string;
   user: UserLogged;
+  loading: boolean;
+  showSearch: boolean
+  setShowSearch: Dispatch<SetStateAction<boolean>>
   login: (accessToken: string) => Promise<void>;
   logout: () => void;
-  loading: boolean;
   updateUser: (key: string, value: string) => void;
 };
 
@@ -32,7 +33,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const [user, setUser] = useState<UserLogged>({} as UserLogged);
   const [accessToken, setAccessToken] = useState("");
   const [loading, setLoading] = useState(true);
-  const router = useRouter();
+  const [showSearch, setShowSearch] = useState(false)
 
   useEffect(() => {
     //Función anonima autoejecutable
@@ -88,7 +89,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
   return (
     <AuthContext.Provider
-      value={{ accessToken, user, login, logout, loading, updateUser }}
+      value={{ accessToken, user, login, logout, loading, updateUser, showSearch, setShowSearch }}
     >
       {children}
     </AuthContext.Provider>
