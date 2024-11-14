@@ -39,7 +39,6 @@ export function AuthProvider({ children }: AuthProviderProps) {
     //Función anonima autoejecutable
     (async () => {
       try {
-        setLoading(true)
         const token = tokenController.getToken();
 
         if (!token) {

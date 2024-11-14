@@ -1,5 +1,5 @@
 import api from "../lib/axios"
-import { GamesPagination, GamesT, PlatformType } from "../types"
+import { GamesByPlatformPopulate, GamesPagination, GamesT, PlatformType } from "../types"
 
 export class Games {
 
@@ -56,6 +56,21 @@ export class Games {
             const url = `/games?${filter}&${pagination}&${populate}`            
             const { data } = await api.get<GamesPagination>(url)
             return data
+
+        } catch (error) {
+            throw error
+        }
+    }
+
+    async getGameBySlug(slug: GamesT['attributes']['slug']) {
+        try {
+            const filter = `filters[slug][$eq]=${slug}`
+            const populateGame = "populate[0]=wallpaper&populate[1]=portada&populate[2]=screenshots&populate[3]=platform"
+            const populatePlatform = "populate[4]=platform.icon"
+            const url = `/games?${filter}&${populateGame}&${populatePlatform}`
+
+            const { data : {data} } = await api.get<{data: GamesByPlatformPopulate[]}>(url)
+            return data[0]
 
         } catch (error) {
             throw error

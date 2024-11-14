@@ -8,6 +8,7 @@ import { Settings } from "./Settings";
 import { Address } from "./Address";
 import Separator from "@/components/Utils/Separator/Separator";
 import styles from "./TabsAccount.module.scss";
+import { WishList } from "./WishList";
 
 export function TabsAccount() {
   const { logout, user, loading } = useAuth();
@@ -40,7 +41,8 @@ export function TabsAccount() {
       menuItem: { key: "mis-deseos", content: "Lista de deseos" },
       render: () => (
         <Tab.Pane attached={false} key="mis-deseos">
-          <p>Lista</p>
+          <WishList />
+          <Separator height={80}/>
         </Tab.Pane>
       ),
     },

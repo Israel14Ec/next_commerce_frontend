@@ -9,6 +9,7 @@ import { GamesT } from "@/src/types"
 import { fn } from "@/src/utils/functions"
 import { Label } from "@/components/Utils/Label"
 import styles from "./BannerLastGamePublisher.module.scss"
+import { serverHost } from "@/src/utils/serverHost"
 
 const gamesController = new Games()
 
@@ -36,13 +37,13 @@ export function BannerLastGamePublisher() {
   return (
     <div className={styles.container} >
         <img 
-          src={`http://localhost:1337${wallpaper.data.attributes.url}`}
+          src={`${serverHost}${wallpaper.data.attributes.url}`}
           className={styles.wallpaper}
         />
-
+      
         <Link 
           className={styles.infoContainer}
-          href={`/${game.attributes.slug}`}  
+          href={`/home/${game.attributes.slug}`}  
         >
           <Container>
             <span className={styles.date} > 

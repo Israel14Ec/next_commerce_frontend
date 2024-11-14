@@ -3,6 +3,8 @@ import { AuthProvider } from "@/src/context";
 import {ToastProvider} from "@/components/Utils/ToastProvider";
 import 'semantic-ui-css/semantic.min.css'
 import '@/scss/global.scss'
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 export const metadata: Metadata = {
   title: "Aplicación e-commerce",

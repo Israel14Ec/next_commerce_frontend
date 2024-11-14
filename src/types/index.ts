@@ -81,6 +81,18 @@ export type GamesT = {
     }
 }
 
+//Screanshot
+export type Screenshots = {
+    screenshots: {
+        data: [
+            {attributes: {
+                url: string
+            }}
+        ]
+    }
+}
+
+
 //Paginación
 export type Pagination = {
     page: number,
@@ -93,4 +105,33 @@ export type Pagination = {
 export type GamesPagination = {
     data: [GamesT]
     meta: {pagination: Pagination}
+}
+
+//games by platform 
+export type GamesByPlatformPopulate = Omit<GamesT, 'attributes'> & {
+    attributes: GamesT['attributes'] & Screenshots & {
+        platform: {
+            data: PlatformType
+        }
+    }
+};
+
+//WishList
+export type WishListT = {
+    attributes: {
+        createdAt: Date
+        publishedAt: Date
+        updatedAt: Date
+    }
+    id: number
+}
+
+//Wishlist whit game
+
+export type WishListWithGame = Omit<WishListT, "attributes"> & {
+    attributes: WishListT['attributes'] & {
+        game: {
+            data: GamesT
+        }
+    }
 }
