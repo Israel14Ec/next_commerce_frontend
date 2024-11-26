@@ -1,11 +1,13 @@
 "use client"
 
+import { useState } from 'react'
 import { Container, Button, Icon } from "semantic-ui-react"
 import { fn } from "@/src/utils/functions"
 import { GamesByPlatformPopulate } from "@/src/types"
 import styles from "./Panel.module.scss"
 import { serverHost } from "@/src/utils/serverHost"
 import { WishListIcon } from "@/components/Utils/WishListIcon"
+import { useCart } from "@/src/Hooks"
 
 type PanelProps = {
   gameId: GamesByPlatformPopulate['id']
@@ -15,6 +17,17 @@ type PanelProps = {
 export function Panel({ gameId, game}:PanelProps) {
 
   const buyPrice = fn.calcDiscountePrice(game.price, game.discount)
+  const { addCart } = useCart()
+
+  const [loading, setLoading] = useState(false)
+
+  const addcartWrapper = () => {
+    setLoading(true)
+    addCart(gameId)
+    setTimeout(() => {
+      setLoading(false)
+    }, 500);
+  }
 
   return (
     <Container className={styles.panel}>
@@ -54,7 +67,9 @@ export function Panel({ gameId, game}:PanelProps) {
               {fn.formatPrice(buyPrice)}
             </span>
           </div>
-          <Button primary fluid>Comprar</Button>
+          <Button primary fluid onClick={addcartWrapper} loading={loading}>
+            Comprar
+          </Button>
           <WishListIcon 
             gameId={gameId}
             className={styles.heart}

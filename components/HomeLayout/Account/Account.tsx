@@ -2,15 +2,16 @@
 
 import { Button, Icon, Label } from "semantic-ui-react";
 import { useRouter } from "next/navigation";
-import { useAuth } from "@/src/Hooks";
+import { useAuth, useCart } from "@/src/Hooks";
 import styles from "./Account.module.scss";
 import { toast } from "react-toastify";
 
 export function Account() {
 
+  const { total } = useCart()
   const { user } = useAuth();
+
   const router = useRouter();
-  const total = 4;
   const userDataExist = Object.keys(user).length > 0
 
   const goToLogin = () => router.push("/join/sign-in");
@@ -22,7 +23,7 @@ export function Account() {
       goToLogin();
       return;
     }
-    return router.push("/home/account");
+    return router.push("/cart");
   };
 
   return (

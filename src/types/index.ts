@@ -135,3 +135,14 @@ export type WishListWithGame = Omit<WishListT, "attributes"> & {
         }
     }
 }
+
+//Carrito 
+export type CartT = {
+    id: GamesT['id']
+    quantity: number
+}
+
+//GamesT quantity
+export type GamesQuantity = GamesByPlatformPopulate & {
+    quantity: number
+}

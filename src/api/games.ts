@@ -1,4 +1,4 @@
-import api from "../lib/axios"
+import api, { CustomAxiosRequestConfig } from "../lib/axios"
 import { GamesByPlatformPopulate, GamesPagination, GamesT, PlatformType } from "../types"
 
 export class Games {
@@ -71,6 +71,19 @@ export class Games {
 
             const { data : {data} } = await api.get<{data: GamesByPlatformPopulate[]}>(url)
             return data[0]
+
+        } catch (error) {
+            throw error
+        }
+    }
+
+    async getGameById(id : GamesT["id"]) {
+        try {
+            const populate = `populate[0]=portada&populate[1]=platform`
+            const url = `/games/${id}?${populate}`
+            
+            const { data: {data} } = await api.get<{data: GamesByPlatformPopulate}>(url, { requiresAuth: true} as CustomAxiosRequestConfig)
+            return data
 
         } catch (error) {
             throw error

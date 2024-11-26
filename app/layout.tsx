@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { AuthProvider } from "@/src/context";
+import { AuthProvider, CartProvider } from "@/src/context";
 import {ToastProvider} from "@/components/Utils/ToastProvider";
 import 'semantic-ui-css/semantic.min.css'
 import '@/scss/global.scss'
@@ -20,9 +20,11 @@ export default function RootLayout({
     <html lang="es">
       <body>
         <AuthProvider>
+          <CartProvider>
             <ToastProvider>
               { children }
             </ToastProvider>
+          </CartProvider>
         </AuthProvider>
       </body>
     </html>
