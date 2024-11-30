@@ -65,6 +65,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
     tokenController.removeToken();
     setAccessToken("");
     setUser({} as UserLogged);
+    setLoading(false)
   };
 
   const login = async (token: string) => {

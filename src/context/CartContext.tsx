@@ -10,6 +10,7 @@ type CartContextProps = {
     cart: CartT[]
     changeQuantityItem: (gameId: GamesT['id'], quantity:number) => void
     deleteItem: (gameId: GamesT['id']) => void 
+    deleteAllItems: () => void
 }
 
 const cartCtrl = new Cart()
@@ -52,8 +53,13 @@ export function CartProvider({children}: {children: ReactNode}) {
         refreshTotalCart()
     }
     
+    const deleteAllItems = () => {
+        cartCtrl.deleteAll()
+        refreshTotalCart()
+    }
+
     return (
-        <CartContext.Provider value={{addCart, total, cart, changeQuantityItem, deleteItem}} >
+        <CartContext.Provider value={{addCart, total, cart, changeQuantityItem, deleteItem, deleteAllItems}} >
             {children}
         </CartContext.Provider>
     )

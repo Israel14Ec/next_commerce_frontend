@@ -15,7 +15,6 @@ export function HeaderCart() {
   const steps = [
     { number: 1, title: "Cesta" },
     { number: 2, title: "Pago" },
-    { number: 3, title: "Confirmación" },
   ];
 
   return (

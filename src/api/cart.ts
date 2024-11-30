@@ -1,4 +1,5 @@
-import { CartT, GamesT } from "../types";
+import api, { CustomAxiosRequestConfig} from "../lib/axios";
+import { AddresT, CartT, GamesQuantity, GamesT, UserLogged } from "../types";
 
 export class Cart {
 
@@ -63,5 +64,33 @@ export class Cart {
         const updateGames = games.filter((game) => game.id !== gameId)
         localStorage.setItem("cart", JSON.stringify(updateGames))
 
+    }
+
+    
+    deleteAll() {
+        localStorage.removeItem("cart")
+    }
+
+    //Crear orden, el ID de paypal se guarda en la DB
+    async paymenCart (tokenPayment: string, products : GamesQuantity[], idUser: UserLogged['id'], 
+        address: AddresT, totalPaymant: number) 
+    {
+        try { 
+
+            const data = {
+                user: idUser,
+                totalPayment: totalPaymant,
+                idPayment: tokenPayment,
+                addressShoping: address,
+                products: products
+            }
+
+            const url = `/orders`
+            const { data : dataOrder } = await api.post(url, {data}, { requiresAuth: true} as CustomAxiosRequestConfig)
+            return dataOrder
+            
+        } catch (error) {
+            throw error
+        }
     }
 } 

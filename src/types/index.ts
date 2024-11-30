@@ -146,3 +146,11 @@ export type CartT = {
 export type GamesQuantity = GamesByPlatformPopulate & {
     quantity: number
 }
+
+//Type de Paypal:
+
+export type PayPalOrder = {
+    id?: string;
+    status?: string;
+};
+  
