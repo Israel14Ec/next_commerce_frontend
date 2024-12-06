@@ -153,4 +153,20 @@ export type PayPalOrder = {
     id?: string;
     status?: string;
 };
+
+
+//orders
+
+export type OrderT = {
+    id: number
+    attributes: {
+        totalPayment: number
+        idPayment: string
+        products: [
+            GamesQuantity
+        ]
+        addressShoping: AddresT
+        createdAt: Date
+    }
+}
   

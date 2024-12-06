@@ -9,6 +9,7 @@ import { Address } from "./Address";
 import Separator from "@/components/Utils/Separator/Separator";
 import styles from "./TabsAccount.module.scss";
 import { WishList } from "./WishList";
+import { Orders } from "./Orders";
 
 export function TabsAccount() {
   const { logout, user, loading } = useAuth();
@@ -33,7 +34,8 @@ export function TabsAccount() {
       menuItem: { key: "mis-pedidos", content: "Mis pedidos" },
       render: () => (
         <Tab.Pane attached={false} key="mis-pedidos">
-          
+          <Orders />
+          <Separator height={80}/>
         </Tab.Pane>
       ),
     },
