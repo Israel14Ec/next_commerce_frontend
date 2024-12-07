@@ -25,7 +25,7 @@ export function TabsAccount() {
     if (!loading && !Object.keys(user).length) {
       router.push("/join/sign-in");
     }
-  }, [loading, user]);
+  }, [loading, user, router]);
 
   const onReload = () => setReload((prevState) => !prevState)
 

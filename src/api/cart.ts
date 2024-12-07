@@ -32,6 +32,7 @@ export class Cart {
     
             return JSON.parse(response)
         } catch (error) {
+            console.error(error);
             return []
         }
         

@@ -23,7 +23,7 @@ export function GridGames({wishesList, onReload} : GridGamesProps) {
           <div key={wish.id} className={styles.game} >
             <Link href={`/home/${game.attributes.slug}`}>
               <div>
-                <img src={`${serverHost}${cover}`} />
+                <img src={`${serverHost}${cover}`} alt="Cover de la portada" />
 
                 { game.attributes.discount > 0 && (
                   <Label.Discount className={styles.discount} >

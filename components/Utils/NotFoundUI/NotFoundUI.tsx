@@ -1,7 +1,7 @@
 import styles from "./NotFoundUI.module.scss"
 
 type NotFoundUIProps = {
-  text: String
+  text: string
 }
 
 export function NotFoundUI({text} : NotFoundUIProps) {

@@ -1,4 +1,4 @@
-import { UserLogged, UserUpdate } from "@/src/types"
+import { UserUpdate } from "@/src/types"
 import * as Yup from "yup"
 
 

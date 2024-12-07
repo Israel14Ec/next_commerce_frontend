@@ -21,13 +21,18 @@ export class User {
         }
     }
 
-    async updateMe (userId : UserLogged["id"] , dataUpdate: {}) {
-        try {
-            const url = `/users/${userId}`
-            const { data } = await api.put(url, dataUpdate, { requiresAuth: true } as CustomAxiosRequestConfig)
-            return data
-        } catch (error) {
-            throw error
+    async updateMe(userId: UserLogged["id"], dataUpdate: unknown) {
+        if (typeof dataUpdate !== "object" || dataUpdate === null) {
+          throw new Error("dataUpdate must be a non-null object");
         }
-    }
+      
+        try {
+          const url = `/users/${userId}`;
+          const { data } = await api.put(url, dataUpdate, { requiresAuth: true } as CustomAxiosRequestConfig);
+          return data;
+        } catch (error) {
+          throw error;
+        }
+      }
+      
 }

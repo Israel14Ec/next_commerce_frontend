@@ -23,7 +23,7 @@ export function Orders() {
                 throw error
             }
         })() 
-    }, [])
+    }, [user.id])
 
     if(!orders.length) return (
         <NotFoundUI 

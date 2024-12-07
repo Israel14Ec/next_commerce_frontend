@@ -1,6 +1,6 @@
 "use client"
 
-import { Container, Icon } from "semantic-ui-react"
+import { Container, Icon, SemanticICONS } from "semantic-ui-react"
 import { data } from "./BarTrust.data"
 import styles from "./BarTrust.module.scss"
 
@@ -11,7 +11,7 @@ export function BarTrust() {
             {data.map(item => (
                 <div key={item.title} className={styles.block} >
                     <Icon 
-                        name={item.icon}
+                        name={item.icon as SemanticICONS}
                     />
                     <div>
                         <h5> {item.title} </h5>

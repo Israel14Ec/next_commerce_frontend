@@ -36,7 +36,7 @@ export function Order({order} : OrderProps) {
         <BasicModal show={showModal} onClose={openCloseModal} title="Información del pedido">
             {products.map( (product) => (
                 <div key={product.id} className={styles.product}>
-                    <img src={`${serverHost}${product.attributes.portada.data.attributes.url}`} />
+                    <img src={`${serverHost}${product.attributes.portada.data.attributes.url}`} alt="Imagen de la portada"/>
                     <div>
                         <div className={styles.info} >
                             <div>

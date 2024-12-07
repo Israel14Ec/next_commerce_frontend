@@ -1,5 +1,5 @@
 import { Games } from "@/src/api";
-import { redirect, useSearchParams } from "next/navigation";
+import { redirect } from "next/navigation";
 import { GridGames } from "@/components/Utils/GridGames";
 import { PaginationUI } from "@/components/Utils/PaginationUI";
 import { NotFoundUI } from "@/components/Utils/NotFoundUI";

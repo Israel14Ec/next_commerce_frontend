@@ -27,14 +27,14 @@ export default function CartPage() {
 
   useEffect(() => {
     if (currenStep < 0 || currenStep > 2) router.push("/cart?step=1");
-  }, [currenStep])
+  }, [currenStep, router])
 
   useEffect(() => {
     if (!loadingUser && !Object.keys(user).length) {
         router.push("/join/sign-in")
     }
 
-}, [loadingUser, user]); 
+}, [loadingUser, user, router]); 
 
 
   useEffect(() => {

@@ -1,4 +1,4 @@
-import { AddressDraft, AddresT } from "@/src/types"
+import { AddressDraft } from "@/src/types"
 import * as Yup from "yup"
 
 // ? en ts el ? marca un type ? como opcional

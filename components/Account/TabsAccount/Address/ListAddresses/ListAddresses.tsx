@@ -33,7 +33,7 @@ export function ListAddresses({reload, onReload} : ListAddressesProps) {
         setLoading(false)
       }
     })()
-  }, [reload])
+  }, [reload, user.id])
   
   if(loading) return (<Spinner/>)
   
