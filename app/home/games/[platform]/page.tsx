@@ -8,6 +8,7 @@ import { GridGames } from "@/components/Utils/GridGames";
 import { redirect } from "next/navigation";
 import { NotFoundUI } from "@/components/Utils/NotFoundUI";
 import { PaginationUI } from "@/components/Utils/PaginationUI";
+import { Metadata } from "next";
 
 type PlatformPageProps = {
     params: {
@@ -26,6 +27,15 @@ let platform = {} as PlatformType
 let games = [] as GamesT[]
 let pagination = {} as Pagination
 
+//Función para metadata debe ser export async y devolver un promise
+export async function generateMetadata({params}: {params: PlatformPageProps['params']}): Promise<Metadata> {
+    return {
+      title: `Plataforma: ${params.platform}`,
+      description: `Descubre los mejores juegos disponibles en ${params.platform}.`,
+    };
+  }
+
+//Obtiene los datos
 async function getGamesByPlatform(platformSlug:string, searchParams?:number) {
     try {
         platform = await platformController.getBySlug(platformSlug)

@@ -1,8 +1,8 @@
-
 import { HeaderWallpaper, Info, Panel } from "@/components/Games";
 import Media from "@/components/Games/Media/Media";
 import Separator from "@/components/Utils/Separator/Separator";
 import { Games } from "@/src/api";
+import { Metadata } from "next";
 
 type GamePageProps = {
     params: {
@@ -10,6 +10,12 @@ type GamePageProps = {
     }
 }
 
+export async function generateMetadata({params} : GamePageProps) :Promise<Metadata> {
+    return {
+        title:`Juego: ${params.game}`,
+        description: `Datos del juego ${params.game}`
+    }
+}
 
 const gameController = new Games()
 

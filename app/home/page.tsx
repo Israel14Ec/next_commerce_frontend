@@ -2,6 +2,7 @@ import { Home } from "@/components/Home"
 import { BannerAd } from "@/components/Utils/BannerAd"
 import { BarTrust } from "@/components/Utils/BarTrust"
 import Separator from "@/components/Utils/Separator/Separator"
+import { Metadata } from "next"
 
 const platformId = {
   playStation: 1,
@@ -10,11 +11,16 @@ const platformId = {
   pc: 4
 }
 
+//El Metadata se usa en server component
+export const metadata: Metadata = {
+  title: "NextCommerce - Gaming",
+  description: "Descubre los mejores juegos para cada plataforma.",
+};
+
 export default function HomePage() {
   return (
     <>
       {/** SEO */}
-      
       <Home.BannerLastGamePublisher />
       <Separator height={100}/>
       <Home.LatestGames title="Ultimos lanzamientos"/>

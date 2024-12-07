@@ -4,6 +4,7 @@ import { PayPalButtons } from "@paypal/react-paypal-js";
 import { Cart } from "@/src/api"
 import { useAuth, useCart } from "@/src/Hooks"
 import { toast } from "react-toastify";
+import { fn } from "@/src/utils/functions";
 
 type PaypalButtonProps = {
   price: number;
@@ -47,8 +48,8 @@ export function PaypalButton({price, invoice, games, addressSelected} : PaypalBu
             {
               description: invoice, // Descripción del producto o servicio
               amount: {
-                currency_code: "USD", // Moneda (asegúrate de usar un código válido)
-                value: price.toString(), // Precio (string con formato decimal, e.g., "50.00")
+                currency_code: "USD", 
+                value: fn.formatPrice(price).replace("$", ""), 
               },
             },
           ],

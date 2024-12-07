@@ -10,6 +10,7 @@ import { Cart } from "@/components/Cart"
 import { Spinner } from "@/components/Utils/Spinner";
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import { useAuth } from "@/src/Hooks";  
+import { Seo } from "@/components/Utils/Seo";
 
 const gamesCtrl = new Games()
 
@@ -66,6 +67,10 @@ export default function CartPage() {
   
   return (
     <PayPalScriptProvider options={{clientId: process.env.NEXT_PUBLIC_CLIENTID_PAYPAL!}}>
+      <Seo 
+        title="NextCommerce - Carrito"
+        description="Carrito de compras del usuario"
+      />
       <Container>
         {currenStep === 1 && <Cart.StepOne games={games}/>}
         {currenStep === 2 && <Cart.StepTwo games={games}/> }
